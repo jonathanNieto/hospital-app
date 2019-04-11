@@ -12,17 +12,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-  ],
+    RegisterComponent
+  ], 
   imports: [
     BrowserModule,
-    /* the order of module is very important, be careful with routing*/
+  /* the order of module is very important, be careful with routing*/
     PagesModule,
     AppRoutingModule,
   ],
@@ -31,6 +29,6 @@ import { RegisterComponent } from './login/register.component';
 })
 export class AppModule {
   /* constructor(router: Router) {
-    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+   console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   } */
  }

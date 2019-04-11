@@ -1,0 +1,15 @@
+{{ legend}}
+<div class="input-group mb-3">
+  <div class="input-group-prepend" id="button-addon3">
+    <button class="btn btn-outline-danger" type="button" (click)="cambiar(-5)">
+      <i class="fa fa-minus-circle"></i>
+    </button>
+  </div>
+  <input #inputProgress name="progress" [(ngModel)]="progress" (ngModelChange)="onChange($event)" type="number" min="1"
+    max="100" class="form-control" placeholder="">
+  <div class="input-group-append" id="button-addon4">
+    <button class="btn btn-outline-success" type="button" (click)="cambiar(5)">
+      <i class="fa fa-plus-circle"></i>
+    </button>
+  </div>
+</div>
