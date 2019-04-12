@@ -14,6 +14,7 @@ import { Graph1Component } from './graph1/graph1.component';
 /* components */
 import { IncreaserComponent } from '../components/increaser/increaser.component';
 import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
+import { AccountSettingsComponent } from '../components/account-settings/account-settings.component';
 
 /* routes */
 import { PagesRoutingModule } from './pages.routing';
@@ -31,6 +32,7 @@ import { ChartsModule } from 'ng2-charts';
     Graph1Component,
     IncreaserComponent,
     DoughnutChartComponent,
+    AccountSettingsComponent,
   ],
   exports: [
     DashboardComponent,

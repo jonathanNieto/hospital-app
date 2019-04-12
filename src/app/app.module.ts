@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 
 /* modules */
 import { PagesModule } from './pages/pages.module';
@@ -12,17 +14,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 
+/* services */
+import { ServiceModule } from './services/service.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent
-  ], 
+  ],
   imports: [
     BrowserModule,
-  /* the order of module is very important, be careful with routing*/
+    /* the order of module is very important, be careful with routing*/
     PagesModule,
     AppRoutingModule,
+    ServiceModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -31,4 +38,4 @@ export class AppModule {
   /* constructor(router: Router) {
    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   } */
- }
+}

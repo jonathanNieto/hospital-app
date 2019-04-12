@@ -36,11 +36,9 @@ export class Graph1Component implements OnInit {
       leyenda: '¿Le importa que le den gases?'
     },
   };
-  constructor() {
-    this.arrayGraphics = Object.values(this.graficos);
-    console.log(this.arrayGraphics);
-  }
+  constructor() { }
 
   ngOnInit() {
+    this.arrayGraphics = Object.values(this.graficos);
   }
 }
