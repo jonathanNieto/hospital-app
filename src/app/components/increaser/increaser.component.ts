@@ -27,7 +27,6 @@ export class IncreaserComponent implements OnInit {
     } else {
       this.progress = event;
     }
-    console.log(this.inputProgress);
     this.inputProgress.nativeElement.value = this.progress;
     this.changeValue.emit(this.progress);
   }
