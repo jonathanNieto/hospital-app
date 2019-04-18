@@ -3,3 +3,14 @@
 .pointer, #themecolors a {
     cursor: pointer;
 }
+
+.w150{
+    width: 150px;
+    border-radius: 10px;
+    
+}
+
+/* take message from data-label and put it in the label at form view */
+.form-control-file~.form-control-file::after {
+    content: attr(value);
+}

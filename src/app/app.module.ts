@@ -19,12 +19,13 @@ import { ServiceModule } from './services/service.module';
 
 /* forms */
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,13 +35,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ServiceModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   /* constructor(router: Router) {
-   console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   } */
 }

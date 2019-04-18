@@ -24,6 +24,10 @@ import { PagesRoutingModule } from './pages.routing';
 /* charts */
 import { ChartsModule } from 'ng2-charts';
 
+/* pipe module */
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 
@@ -38,6 +42,7 @@ import { ChartsModule } from 'ng2-charts';
     AccountSettingsComponent,
     PromisesComponent,
     RxjsComponent,
+    ProfileComponent,
   ],
   exports: [
     DashboardComponent,
@@ -49,7 +54,8 @@ import { ChartsModule } from 'ng2-charts';
     SharedModule,
     PagesRoutingModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    PipesModule
   ]
 })
 export class PagesModule { }

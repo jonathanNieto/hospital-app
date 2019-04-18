@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { UploadFileService } from '../upload-file/upload-file.service';
+
 
 
 @Injectable({
@@ -12,10 +14,10 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  user: User;
+  user: User = new User('', '', '', '');
   token: string;
 
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(public http: HttpClient, public router: Router, public uploadFileService: UploadFileService) {
     this.loadStorage();
   }
 
@@ -23,6 +25,7 @@ export class UserService {
     const url = `${environment.url}/login/google`;
     return this.http.post(url, { token }).pipe(
       map((response: any) => {
+        console.log({ response });
         this.saveStorage(response.id, response.token, response.user);
         this.loadStorage();
         return true;
@@ -39,6 +42,7 @@ export class UserService {
     const url = `${environment.url}/login`;
     return this.http.post(url, user).pipe(
       map((response: any) => {
+        console.log({ response });
         this.saveStorage(response.id, response.token, response.user);
         this.loadStorage();
         return true;
@@ -72,7 +76,20 @@ export class UserService {
   loadStorage() {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
-      this.user = JSON.parse(localStorage.getItem('user'))
+      /* this.user = JSON.parse(localStorage.getItem('user')); */
+      /* IMPORTANT this.user has to be an object of type User NOT a single object */
+      if (this.user === null) {
+        this.user = new User('', '', '', '');
+      }
+      if (localStorage.getItem('user')) {
+        const userlocal = JSON.parse(localStorage.getItem('user'));
+        this.user.setName(userlocal.name);
+        this.user.setLastname(userlocal.lastname);
+        this.user.setEmail(userlocal.email);
+        this.user.setId(userlocal._id);
+        this.user.setGoogle(userlocal.google);
+        this.user.setImg(userlocal.img);
+      }
     } else {
       this.token = '';
       this.user = null;
@@ -85,6 +102,44 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
+  }
+
+  updateUser(user: User) {
+    const url = `${environment.url}/user/${user.getId()}?token=${this.token}`;
+    return this.http.put(url, user).pipe(
+      map((response: any) => {
+        this.saveStorage(response.id, response.token, response.user);
+        this.loadStorage();
+        Swal.fire({
+          title: 'Usuario actualizado!',
+          text: `${user.getName()} ${user.getLastname()}, ${user.getEmail()}`,
+          type: 'success',
+          confirmButtonText: 'OK'
+        });
+        return true;
+      })
+    );
+  }
+
+  changeImage(file: File, id: string) {
+    this.uploadFileService.uploadFile(file, 'users', id)
+      .then((response: any) => {
+        if (this.user === null) {
+          console.log('user was null');
+          this.user = new User('', '', '', '');
+        }
+        this.user.setImg(response.user.img);
+        Swal.fire({
+          title: 'Imagen actualizada!',
+          text: `${this.user.getName()} ${this.user.getLastname()}, ${this.user.getEmail()}`,
+          type: 'success',
+          confirmButtonText: 'OK'
+        });
+        this.saveStorage(id, this.token, this.user);
+      })
+      .catch((response) => {
+        console.log({ response });
+      });
   }
 
 }
