@@ -25,7 +25,6 @@ export class UserService {
     const url = `${environment.url}/login/google`;
     return this.http.post(url, { token }).pipe(
       map((response: any) => {
-        console.log({ response });
         this.saveStorage(response.id, response.token, response.user);
         this.loadStorage();
         return true;
@@ -42,7 +41,6 @@ export class UserService {
     const url = `${environment.url}/login`;
     return this.http.post(url, user).pipe(
       map((response: any) => {
-        console.log({ response });
         this.saveStorage(response.id, response.token, response.user);
         this.loadStorage();
         return true;
@@ -52,7 +50,8 @@ export class UserService {
   createUser(user: User) {
     const url = `${environment.url}/user`;
     return this.http.post(url, user).pipe(
-      map((response: { user: any; }) => {
+      map((response: any) => {
+        console.log({ response });
         Swal.fire({
           title: 'Usuario creado!',
           text: user.getEmail(),
@@ -104,15 +103,27 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  updateUser(user: User) {
-    const url = `${environment.url}/user/${user.getId()}?token=${this.token}`;
+  updateUser(user: User | any) {
+    console.log(typeof user);
+    console.log({ user });
+    const id = (user instanceof User) ? user.getId() : user._id;
+    const name = (user instanceof User) ? user.getName() : user.name;
+    const lastname = (user instanceof User) ? user.getLastname() : user.lastname;
+    const email = (user instanceof User) ? user.getEmail() : user.email;
+    const url = `${environment.url}/user/${id}?token=${this.token}`;
     return this.http.put(url, user).pipe(
       map((response: any) => {
-        this.saveStorage(response.id, response.token, response.user);
+        console.log({ id });
+        console.log(this.user.getId());
+        console.log({ response });
+        if (id === this.user.getId()) {
+          console.log('son iguales');
+          this.saveStorage(id, this.token, response.user);
+        }
         this.loadStorage();
         Swal.fire({
           title: 'Usuario actualizado!',
-          text: `${user.getName()} ${user.getLastname()}, ${user.getEmail()}`,
+          text: `${name} ${lastname}, ${email}`,
           type: 'success',
           confirmButtonText: 'OK'
         });
@@ -140,6 +151,23 @@ export class UserService {
       .catch((response) => {
         console.log({ response });
       });
+  }
+
+  loadUsers(offset: number = 0) {
+    const url = `${environment.url}/user?offset=${offset}`;
+    return this.http.get(url);
+  }
+
+  searchUsers(term: string) {
+    const url = `${environment.url}/search/user/${term}`;
+    return this.http.get(url).pipe(
+      map((response: any) => response.users)
+    );
+  }
+
+  deleteUser(id: string) {
+    const url = `${environment.url}/user/${id}?token=${this.token}`;
+    return this.http.delete(url);
   }
 
 }

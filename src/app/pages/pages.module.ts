@@ -17,6 +17,9 @@ import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-ch
 import { AccountSettingsComponent } from '../components/account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 /* routes */
 import { PagesRoutingModule } from './pages.routing';
@@ -26,7 +29,6 @@ import { ChartsModule } from 'ng2-charts';
 
 /* pipe module */
 import { PipesModule } from '../pipes/pipes.module';
-import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -43,6 +45,8 @@ import { ProfileComponent } from './profile/profile.component';
     PromisesComponent,
     RxjsComponent,
     ProfileComponent,
+    UsersComponent,
+    ModalUploadComponent,
   ],
   exports: [
     DashboardComponent,

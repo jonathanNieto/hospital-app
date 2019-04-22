@@ -19,7 +19,6 @@ import { ServiceModule } from './services/service.module';
 
 /* forms */
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [

@@ -48,8 +48,8 @@
   <div class="col-5">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Fotografía del usuario</h4>
-        <h6 class="card-title">Nombre del usuario</h6>
+        <h4 class="card-title">Fotografía {{ user.name}}</h4>
+        <h6 class="card-title">{{user.name}} {{user.lastname}}</h6>
 
         <img *ngIf="!tempImage" [src]="user.img | image" class="w150 mb-2" alt="">
         <img *ngIf="tempImage" [src]="tempImage" class="w150 mb-2" alt="">
