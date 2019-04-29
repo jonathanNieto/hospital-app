@@ -104,8 +104,6 @@ export class UserService {
   }
 
   updateUser(user: User | any) {
-    console.log(typeof user);
-    console.log({ user });
     const id = (user instanceof User) ? user.getId() : user._id;
     const name = (user instanceof User) ? user.getName() : user.name;
     const lastname = (user instanceof User) ? user.getLastname() : user.lastname;
@@ -113,11 +111,7 @@ export class UserService {
     const url = `${environment.url}/user/${id}?token=${this.token}`;
     return this.http.put(url, user).pipe(
       map((response: any) => {
-        console.log({ id });
-        console.log(this.user.getId());
-        console.log({ response });
         if (id === this.user.getId()) {
-          console.log('son iguales');
           this.saveStorage(id, this.token, response.user);
         }
         this.loadStorage();

@@ -22,6 +22,7 @@ export class ModalUploadService {
   }
 
   showModal(collection: string, id: string) {
+    console.log('showModal');
     this.collection = collection;
     this.id = id;
     this.hide = '';

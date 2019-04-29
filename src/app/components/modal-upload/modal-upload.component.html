@@ -3,13 +3,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Subir Imagen</h5>
           <button (click)="closeModal()" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-center">
-          <img *ngIf="!tempImage" [src]="'sth' | image" class="w150 mb-2" alt="">
+          <img *ngIf="!tempImage" [src]="'sth' | image:hospitals" class="w150 mb-2" alt="">
           <img *ngIf="tempImage" [src]="tempImage" class="w150 mb-2" alt="">
           <div class="form-group">
             <label for="exampleFormControlFile1">Imagen</label>

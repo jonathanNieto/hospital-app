@@ -11,6 +11,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctors/doctor.component';
 
 const routes: Routes = [
     {
@@ -26,6 +29,9 @@ const routes: Routes = [
             { path: 'profile', component: ProfileComponent, data: { title: 'Perfil de usuario' } },
             /* manteniminetos */
             { path: 'users', component: UsersComponent, data: { title: 'Mantenimiento de usuarios' } },
+            { path: 'hospitals', component: HospitalsComponent, data: { title: 'Mantenimiento de hospitales' } },
+            { path: 'doctors', component: DoctorsComponent, data: { title: 'Mantenimiento de medicos' } },
+            { path: 'doctor/:id', component: DoctorComponent, data: { title: 'Actualizar medico' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }

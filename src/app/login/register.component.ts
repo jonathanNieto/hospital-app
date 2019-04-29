@@ -50,7 +50,6 @@ export class RegisterComponent implements OnInit {
   }
 
   saveUser() {
-
     if (this.form.invalid) {
       return;
     }

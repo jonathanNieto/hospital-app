@@ -51,7 +51,6 @@ export class UsersComponent implements OnInit {
   }
 
   searchUsers(term: string) {
-
     if (term.length === 0) {
       this.loadUsers();
       return;
