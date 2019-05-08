@@ -6,7 +6,9 @@ import { environment } from '../../../environments/environment';
 })
 export class UploadFileService {
 
-  constructor() { }
+  constructor() { 
+    console.log('upload service is ready');
+  }
 
   uploadFile(file: File, collection: string, id: string) {
     return new Promise((resolve, reject) => {

@@ -19,6 +19,10 @@ export class DoctorsComponent implements OnInit {
 
   ngOnInit() {
     this.loadDoctors();
+    this.modalUploadService.notification
+      .subscribe((response) => {
+        this.loadDoctors();
+      });
   }
 
   loadDoctors() {

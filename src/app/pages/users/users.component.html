@@ -43,7 +43,7 @@
           <tbody>
             <tr *ngFor="let user of users">
               <td>
-                <img (click)="showModal(user._id)" [src]="user.img | image" class="w50" alt="">
+                <img (click)="showModal(user._id)" [src]="user.img | image" class="w50 pointer dropify-clear" >
               </td>
               <td>{{user.email}}</td>
               <td>{{user.name}}</td>

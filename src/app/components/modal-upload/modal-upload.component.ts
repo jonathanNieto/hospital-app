@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { UploadFileService } from 'src/app/services/service.index';
 import { ModalUploadService } from './modal-upload.service';
 
+declare var jQuery:any
 
 @Component({
   selector: 'app-modal-upload',
@@ -14,13 +15,20 @@ export class ModalUploadComponent implements OnInit {
   image: File;
   tempImage: string;
   searchValue = '';
+  dataDismiss = '';
+  display = '';
 
-  constructor(public uploadFileService: UploadFileService, public modalUploadService: ModalUploadService) { }
-
-  ngOnInit() {
+  constructor(public uploadFileService: UploadFileService, public modalUploadService: ModalUploadService) {
+    this.dataDismiss = '';
   }
 
-  imageSelected(event) {
+
+  ngOnInit() {
+    this.dataDismiss = '';
+    jQuery.getScript("../../assets/js/modal-upload.js");
+  }
+
+  imageSelected(event: { target: { files: any[]; }; }) {
     const image = event.target.files[0];
     if (!image) {
       this.image = null;
@@ -46,18 +54,19 @@ export class ModalUploadComponent implements OnInit {
 
   uploadModal() {
     this.uploadFileService.uploadFile(this.image, this.modalUploadService.collection, this.modalUploadService.id)
-        .then( (response) => {
-          this.modalUploadService.notification.emit(response);
-          this.closeModal();
-        })
-        .catch((error) => {
-          console.log({error});
-        });
+      .then((response) => {
+        this.modalUploadService.notification.emit(response);
+        this.closeModal();
+        this.tempImage = '';
+      })
+      .catch((error) => {
+        console.log({ error });
+      });
   }
 
   closeModal() {
     this.image = null;
-    this.imageSelected = null;
+    this.tempImage = null;
     this.modalUploadService.hideModal();
-  }
+  }   
 }

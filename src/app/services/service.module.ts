@@ -9,10 +9,11 @@ import {
   SidebarService,
   SharedService,
   UserService,
-  LoginGuardGuard,
   UploadFileService,
   HospitalService,
-  DoctorService
+  DoctorService,
+  LoginGuardGuard,
+  AdminGuard
 } from './service.index';
 
 
@@ -26,11 +27,12 @@ import {
     SidebarService,
     SharedService,
     UserService,
-    LoginGuardGuard,
     UploadFileService,
     ModalUploadService,
     HospitalService,
-    DoctorService
+    DoctorService,
+    LoginGuardGuard,
+    AdminGuard
   ]
 })
 export class ServiceModule { }

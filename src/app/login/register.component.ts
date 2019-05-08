@@ -69,20 +69,15 @@ export class RegisterComponent implements OnInit {
       this.form.value.email,
       this.form.value.password1
     );
-
-    console.log({ user });
-
     this.userService.createUser(user)
       .subscribe(
         (response) => this.router.navigate(['/login']),
         (error) => {
-          console.log(error);
           const errorMessage = error.error.errors.errors.email.message;
-          console.log(errorMessage);
           Swal.fire({
             title: 'Oops ... :(!',
             text: `${errorMessage}, por favor escriba otro!`,
-            type: 'warning',
+            type: 'success',
             confirmButtonText: 'OK'
           });
         }

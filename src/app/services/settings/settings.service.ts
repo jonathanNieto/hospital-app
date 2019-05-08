@@ -21,7 +21,11 @@ export class SettingsService {
 
   loadSettings() {
     if (localStorage.getItem('settings')) {
-      this.settings = JSON.parse(localStorage.getItem('settings'));
+      try {
+        this.settings = JSON.parse(localStorage.getItem('settings'));
+      } catch (error) {
+        console.log({error});        
+      }
       this.applyTheme(this.settings.theme);
     } else {
       this.applyTheme(this.settings.theme);

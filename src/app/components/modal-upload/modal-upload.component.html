@@ -9,15 +9,16 @@
           </button>
         </div>
         <div class="modal-body text-center">
-          <img *ngIf="!tempImage" [src]="'sth' | image:hospitals" class="w150 mb-2" alt="">
-          <img *ngIf="tempImage" [src]="tempImage" class="w150 mb-2" alt="">
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Imagen</label>
-            <input (change)="imageSelected( $event)" type="file" class="form-control-file border" accept="image/*" [value]="searchValue">
-          </div> 
+          <div class="card">
+            <div class="card-body">
+              <input (change)="imageSelected($event)" type="file" id="input-file-now" class="dropify" accept="image/*"
+                [value]="searchValue" />
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
-          <button (click)="uploadModal()" [disabled]="!tempImage" type="button" class="btn btn-primary">Subir imagen</button>
+          <button (click)="uploadModal()" [disabled]="!tempImage" type="button" class="btn btn-primary">Subir
+            imagen</button>
           <button (click)="closeModal()" type="button" class="btn btn-secondary">Cerrar</button>
         </div>
       </div>

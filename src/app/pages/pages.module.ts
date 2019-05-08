@@ -32,6 +32,7 @@ import { ChartsModule } from 'ng2-charts';
 import { PipesModule } from '../pipes/pipes.module';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -53,6 +54,7 @@ import { DoctorComponent } from './doctors/doctor.component';
     HospitalsComponent,
     DoctorsComponent,
     DoctorComponent,
+    SearchComponent,
   ],
   exports: [
     DashboardComponent,
